@@ -91,7 +91,20 @@ def wrap(s):
     return ''.join(out)
 for i,t in ko.items(): KO[i]=norm_keep_codes(t,norm_dialog)
 import reflow
-log('대사 재배치',reflow.reflow(KO,sorted(KO)),'단독줄 줄바꿈',reflow.split_single(KO,sorted(KO)),'남은 17자 초과',sum(1 for v in KO.values() if max(reflow.vis(p) for p in v.split(chr(10)))>17))
+# 실제 스크립트 안에서의 앞뒤 관계: 공유 문자열(예: 빈 줄 '＿%')이 엉뚱한 대사와 묶이지 않도록
+import ass as _ass
+_ji={s.encode('cp932'):i for i,s in reversed(list(enumerate(ja)))}
+NXT={};PRV={}
+for _nm in os.listdir('ext'):
+    _d=open('ext/'+_nm,'rb').read()
+    if _d[:4]!=b'$ASS': continue
+    for _o,_t,_n,_offs,_strs in _ass.find(_d):
+        _q=[_ji.get(x) for x in _strs]
+        for _a,_b in zip(_q,_q[1:]+[None]):
+            if _a is not None: NXT.setdefault(_a,set()).add(_b)
+            if _b is not None: PRV.setdefault(_b,set()).add(_a)
+def LINK(a,b): return NXT.get(a)=={b} and PRV.get(b)=={a}
+log('대사 재배치',reflow.reflow(KO,sorted(KO),LINK),'단독줄 줄바꿈',reflow.split_single(KO,sorted(KO),LINK),'남은 17자 초과',sum(1 for v in KO.values() if max(reflow.vis(p) for p in v.split(chr(10)))>17))
 MN={}
 for n,dct in M.items():
     MN[n]={k:norm_data(v) for k,v in dct.items()}

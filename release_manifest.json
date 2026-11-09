@@ -1,11 +1,11 @@
 {
- "version": "v1.0",
- "asset": "Khamrai_KO_v1.0.xdelta",
- "asset_size": 1732978,
- "asset_sha256": "8f2bd279ce75d609982f4c35a8f10171bb9e5d0cb32819c2972bdfad243bbac0",
+ "version": "v1.1",
+ "asset": "Khamrai_KO_v1.1.xdelta",
+ "asset_size": 1732160,
+ "asset_sha256": "e41707a49e872655ed5387236e586af72a903ff15089640a0e75192ea5e8b9a3",
  "source_bin_size": 497927808,
  "source_bin_md5": "82e83717581cfd3be10daee0a816e3d4",
  "source_bin_sha256": "e99772014d8090aedc849121d9fa120498978682484ce922262e9063a695013c",
  "result_bin_size": 497927808,
- "result_bin_sha256": "acb4e78df910ef8782baae0de15fc1ddbcca82d88e2dfd2ac9e05f6c6e5ac5a2"
+ "result_bin_sha256": "dbb79d7adc3dee029a7a202634374784a3c9faff55b0772a367d9ccc71432b59"
 }

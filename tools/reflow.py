@@ -25,12 +25,12 @@ def fill(ws,n):
             k+=1
         if k>=n: return None
     return ['\x01'.join(l) for l in lines]
-def reflow(KO,order):
+def reflow(KO,order,link=lambda a,b:b==a+1):
     """KO: idx->정규화 문자열. order: 원래 순서의 idx 목록. 변경 수 반환"""
     ch=0;i=0;order=list(order)
     while i<len(order):
         j=i
-        while j+1<len(order) and order[j+1]==order[j]+1 and order[j] in KO and order[j+1] in KO and cont(KO[order[j]],KO[order[j+1]]): j+=1
+        while j+1<len(order) and link(order[j],order[j+1]) and order[j] in KO and order[j+1] in KO and cont(KO[order[j]],KO[order[j+1]]): j+=1
         grp=order[i:j+1]
         if any(vis(KO[x])>LIM for x in grp if x in KO) and len(grp)>1:
             parts=[body(KO[x]) for x in grp]
@@ -42,13 +42,13 @@ def reflow(KO,order):
                 ch+=1
         i=j+1
     return ch
-def split_single(KO,order):
+def split_single(KO,order,link=lambda a,b:b==a+1):
     """다른 줄과 이어지지 않는 단독 줄이 17자를 넘으면 균형 잡힌 공백 위치에 줄바꿈 삽입"""
     order=list(order);s=set(order);n=0
     for x in order:
         v=KO[x]
         if vis(v)<=LIM or '\n' in v: continue
-        if (x-1 in s and cont(KO[x-1],v)) or (x+1 in s and cont(v,KO[x+1])): continue
+        if (x-1 in s and link(x-1,x) and cont(KO[x-1],v)) or (x+1 in s and link(x,x+1) and cont(v,KO[x+1])): continue
         h,bd,t=body(v)
         ws=bd.split('\x01')
         best=None

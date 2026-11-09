@@ -5,7 +5,7 @@ EXE=os.path.expanduser(r'~\AppData\Local\Programs\DuckStation\duckstation-qt-x64
 SHOTS=os.path.expanduser(r'~\AppData\Local\DuckStation\screenshots')
 u32=ctypes.windll.user32
 VK={'up':ord('Y'),'down':ord('N'),'left':ord('B'),'right':ord('M'),'x':ord('K'),'o':ord('L'),'sq':ord('J'),'tri':ord('I'),
-    'start':0x0D,'select':0x08,'l1':ord('Q'),'r1':ord('E'),'shot':0x79,'tab':0x09,'f1':0x70,'f2':0x71,'ls':ord('S'),'lw':ord('W'),'la':ord('A'),'ld':ord('D')}
+    'start':0x0D,'select':0x08,'l1':ord('Q'),'l2':ord('1'),'r1':ord('E'),'shot':0x79,'tab':0x09,'f1':0x70,'f2':0x71,'ls':ord('S'),'lw':ord('W'),'la':ord('A'),'ld':ord('D')}
 class Emu:
     def __init__(s,cue,state=None):
         args=[EXE,'-batch','-nogui']

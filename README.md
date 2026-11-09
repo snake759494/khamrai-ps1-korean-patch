@@ -5,8 +5,8 @@ PS1 일본판 **神来 -KHAMRAI- (카무라이, SLPS-02640)** 비공식 한국�
 ## 적용 방법
 1. 아래 해시와 일치하는 **원본 `.bin`/`.cue`** (Redump 형식, 트랙 1개)를 준비합니다. (CHD·PBP·ECM 등으로 변환한 이미지에는 적용할 수 없습니다.)
    - PowerShell: `Get-FileHash -Algorithm MD5 -LiteralPath '.\Khamrai (Japan).bin'`
-2. xdeltaUI 같은 도구로 원본 `.bin` 에 `Khamrai_KO_v1.1.xdelta` 를 적용합니다. (Patch = xdelta, Source File = 원본 BIN, Output File = 새 파일명)
-   - 명령줄: `xdelta3 -d -s "Khamrai (Japan).bin" Khamrai_KO_v1.1.xdelta "Khamrai (Korean).bin"`
+2. xdeltaUI 같은 도구로 원본 `.bin` 에 `Khamrai_KO_v1.2.xdelta` 를 적용합니다. (Patch = xdelta, Source File = 원본 BIN, Output File = 새 파일명)
+   - 명령줄: `xdelta3 -d -s "Khamrai (Japan).bin" Khamrai_KO_v1.2.xdelta "Khamrai (Korean).bin"`
 3. 원본 `.cue` 를 복사해 이름을 바꾸고, 안의 `FILE "..."` 줄을 새 `.bin` 파일명으로 고칩니다.
 4. 만들어진 `.cue` 를 DuckStation 등 PS1 에뮬레이터나 ODE 장치에서 실행합니다.
 
@@ -15,9 +15,9 @@ PS1 일본판 **神来 -KHAMRAI- (카무라이, SLPS-02640)** 비공식 한국�
 | 원본 BIN 크기 | 497,927,808 바이트 |
 | 원본 BIN MD5 | `82e83717581cfd3be10daee0a816e3d4` |
 | 원본 BIN SHA-256 | `e99772014d8090aedc849121d9fa120498978682484ce922262e9063a695013c` |
-| xdelta SHA-256 | `e41707a49e872655ed5387236e586af72a903ff15089640a0e75192ea5e8b9a3` |
+| xdelta SHA-256 | `ea258d670b18ffc69547a1b28f80df282ed1eb144c6a174f6d1b4bc932bebfb0` |
 | 결과 BIN 크기 | 497,927,808 바이트 |
-| 결과 BIN SHA-256 | `dbb79d7adc3dee029a7a202634374784a3c9faff55b0772a367d9ccc71432b59` |
+| 결과 BIN SHA-256 | `feed9952dbcda4934184b7232e8a96984b78447470eacf96f0c1ca380045ba74` |
 
 ## 주의
 - 원본에서 만든 **상태저장(세이브 스테이트)** 은 불러오지 마세요. 글꼴 배치가 달라 글자가 깨집니다. 메모리 카드 세이브는 그대로 쓸 수 있습니다.

@@ -104,7 +104,7 @@ for _nm in os.listdir('ext'):
             if _a is not None: NXT.setdefault(_a,set()).add(_b)
             if _b is not None: PRV.setdefault(_b,set()).add(_a)
 def LINK(a,b): return NXT.get(a)=={b} and PRV.get(b)=={a}
-log('대사 재배치',reflow.reflow(KO,sorted(KO),LINK),'단독줄 줄바꿈',reflow.split_single(KO,sorted(KO),LINK),'남은 17자 초과',sum(1 for v in KO.values() if max(reflow.vis(p) for p in v.split(chr(10)))>17))
+log('대사 재배치',reflow.reflow(KO,sorted(KO),LINK),'단독줄 낱말경계 채움',reflow.pad_single(KO,sorted(KO),LINK),'남은 17자 초과(연속줄)',[i for i in sorted(KO) if reflow.vis(KO[i])>17 and ((i-1 in KO and LINK(i-1,i) and reflow.cont(KO[i-1],KO[i])) or (i+1 in KO and LINK(i,i+1) and reflow.cont(KO[i],KO[i+1])))])
 MN={}
 for n,dct in M.items():
     MN[n]={k:norm_data(v) for k,v in dct.items()}

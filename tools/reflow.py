@@ -2,7 +2,10 @@
 import re
 LIM=17
 TOK=re.compile(r'%M\d.*?%M\d|%[A-Za-z]\d|%|.',re.S)
-def vis(s): return sum(1 for t in TOK.findall(s) if len(t)==1 and t!='%')
+def vis(s):
+    # 줄 끝 」』는 18번째 칸에 걸칠 수 있으므로 세지 않음
+    T=[t for t in TOK.findall(s) if len(t)==1 and t!='%']
+    return len(T)-(1 if T and T[-1] in '」』' else 0)
 def body(s):
     """(머리코드, 본문, 꼬리%) 분리"""
     m=re.match(r'((?:%M\d.*?%M\d|%[A-Za-z]\d)*)(.*?)(%?)$',s,re.S)
@@ -58,4 +61,21 @@ def split_single(KO,order,link=lambda a,b:b==a+1):
                 sc=abs(vis(a)-vis(b)-1)
                 if best is None or sc<best[0]: best=(sc,a,b)
         if best: KO[x]=h+best[1]+'\n'+best[2]+t;n+=1
+    return n
+
+def pad_single(KO,order,link):
+    """단독 줄이 17자를 넘으면 게임 자동 줄바꿈(17자)이 낱말 경계에서 일어나도록 공백으로 채움"""
+    s=set(order);n=0
+    for x in order:
+        v=KO[x]
+        if vis(v)<=LIM: continue
+        if (x-1 in s and link(x-1,x) and cont(KO[x-1],v)) or (x+1 in s and link(x,x+1) and cont(v,KO[x+1])): continue
+        h,bd,t=body(v);ws=bd.split('')
+        raw=lambda z:sum(1 for q in TOK.findall(z) if len(q)==1 and q!='%')
+        best=None
+        for k in range(1,len(ws)):
+            a=''.join(ws[:k]);b=''.join(ws[k:])
+            if raw(h+a)<=LIM and vis(b)<=LIM: best=(a,b)
+        if best:
+            a,b=best;KO[x]=h+a+''*(LIM-raw(h+a))+b+t;n+=1
     return n

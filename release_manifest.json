@@ -1,0 +1,11 @@
+{
+ "version": "v1.0",
+ "asset": "Khamrai_KO_v1.0.xdelta",
+ "asset_size": 1732978,
+ "asset_sha256": "8f2bd279ce75d609982f4c35a8f10171bb9e5d0cb32819c2972bdfad243bbac0",
+ "source_bin_size": 497927808,
+ "source_bin_md5": "82e83717581cfd3be10daee0a816e3d4",
+ "source_bin_sha256": "e99772014d8090aedc849121d9fa120498978682484ce922262e9063a695013c",
+ "result_bin_size": 497927808,
+ "result_bin_sha256": "acb4e78df910ef8782baae0de15fc1ddbcca82d88e2dfd2ac9e05f6c6e5ac5a2"
+}
